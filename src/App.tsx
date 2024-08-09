@@ -1,6 +1,8 @@
+import BasicLayout from '@/layouts/BasicLayout'
+
 const App = () => {
   return (
-    <div className=''></div>
+    <BasicLayout></BasicLayout>
   )
 }
 

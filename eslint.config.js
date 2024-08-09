@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint'
 
 export default tseslint.config({
   extends: [js.configs.recommended, ...tseslint.configs.recommended],
-  files: ['**/*.{ts,tsx}'],
+  files: ['**/*.{ts,tsx,jsx,tsx}'],
   ignores: ['dist'],
   languageOptions: {
     ecmaVersion: 2020,
@@ -22,7 +22,10 @@ export default tseslint.config({
       'warn',
       { allowConstantExport: true },
     ],
-    'semi': ['error', 'never'],
+    'jsx-quotes': ["error", "prefer-single"],
+    '@typescript-eslint/no-unused-vars': 'warn',
     'quotes': ['error', 'single'],
+    'semi': ['error', 'never'],
+    '@typescript-eslint/no-explicit-any': 'off'
   },
 })

@@ -9,7 +9,7 @@ import Setting from './setting'
 const BasicLayout = () => {
   return (
     <div className='w-[100vw] h-[100vh] flex flex-col overflow-hidden'>
-      <div className='w-full h-[50px] bg-pink-50'>
+      <div className='w-full h-[50px] border-b'>
         <Header />
       </div>
       <Allotment>
