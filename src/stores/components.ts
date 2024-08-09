@@ -1,5 +1,5 @@
-import { Component } from "@/types/components"
-import { defineStore } from "./utils"
+import { Component } from '@/types/components'
+import { defineStore } from './utils'
 
 
 interface State {
