@@ -1,0 +1,2 @@
+// 菜单项
+export const WINDCODE_CURRENT_ITEM = 'WINDCODE_CURRENT_ITEM'

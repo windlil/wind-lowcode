@@ -1,6 +1,6 @@
 import { useNavigate, Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
-import { Github } from 'lucide-react'
+import { GithubOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
 
 interface TopMenuItem {
@@ -62,7 +62,7 @@ const Layout = () => {
           </ul>
         </div>
         <div className='flex gap-2 cursor-pointer text-zinc-700 hover:text-black'>
-          <Github />
+          <GithubOutlined />
           <span className='font-bold'>Github</span>
         </div>
       </header>
