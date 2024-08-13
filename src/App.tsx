@@ -1,8 +1,9 @@
-import BasicLayout from '@/layouts/BasicLayout'
+import { RouterProvider } from 'react-router-dom'
+import router from './router'
 
 const App = () => {
   return (
-    <BasicLayout></BasicLayout>
+    <RouterProvider router={router}></RouterProvider>
   )
 }
 

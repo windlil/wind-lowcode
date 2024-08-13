@@ -8,3 +8,12 @@ html, body, #root {
   margin: 0;
   padding: 0;
 }
+
+.overflow-text {
+  overflow:hidden;
+  word-wrap: break-word;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;  
+}
