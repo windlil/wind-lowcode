@@ -1,5 +1,8 @@
+import useUserInfoStore from '@/stores/userinfo'
 import { FC, ReactNode, useCallback, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+
+const WHITE_LIST = ['/landing']
 
 const Auth: FC<{
   children: ReactNode
@@ -8,13 +11,13 @@ const Auth: FC<{
 }) => {
   const navigate = useNavigate()
   const location = useLocation()
-  const isAuth = false
+  const { auth } = useUserInfoStore()
 
   const handleAuth = useCallback(() => {
-    if (!isAuth) {
+    if (!WHITE_LIST.includes(location.pathname) && !auth) {
       navigate('/landing')
     }
-  },[isAuth, navigate])
+  },[auth, navigate, location])
 
   useEffect(() => {
     handleAuth()

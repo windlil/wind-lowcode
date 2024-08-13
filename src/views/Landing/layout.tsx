@@ -44,11 +44,11 @@ const Layout = () => {
 
   return (
     <div className={styles.main}>
-      <header className='transition-all w-full h-16 flex justify-between items-center px-14 border-b border-zinc-100 select-none'>
-        <h1 className='font-bold text-xl'>
+      <header className='transition-all w-full h-16 flex justify-center items-center px-14 border-b border-zinc-100 select-none'>
+        <h1 className='font-bold text-xl flex-1'>
           WindLowcode
         </h1>
-        <div>
+        <div className='w-4/5 flex justify-center'>
           <ul className='flex gap-10 text-zinc-600'>
             {topMenu.map(item => 
               <li 
@@ -61,7 +61,7 @@ const Layout = () => {
             )}
           </ul>
         </div>
-        <div className='flex gap-2 cursor-pointer text-zinc-700 hover:text-black'>
+        <div className='flex-1 flex gap-2 cursor-pointer text-zinc-700 hover:text-black'>
           <GithubOutlined />
           <span className='font-bold'>Github</span>
         </div>
