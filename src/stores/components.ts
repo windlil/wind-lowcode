@@ -4,7 +4,7 @@ import { defineStore } from './utils'
 
 interface State {
   renderComponents: Component[]
-  addComponent: (component: Component) => void
+  addComponent: (component: Component, parentId?: number | string) => void
 }
 
 const mockComponents: Component[] = [
@@ -46,11 +46,36 @@ const mockComponents: Component[] = [
   },
 ]
 
-const useComponentStore = defineStore<State>(() => ({
+const useComponentStore = defineStore<State>((set) => ({
   renderComponents: mockComponents,
-  addComponent(component) {
-    this.renderComponents.push(component)
+  addComponent(component, parentId?) {
+    set(state => {
+      if (parentId) {
+        const parentNode = getParentNodeByParentId(state.renderComponents, parentId)
+        if (parentNode && !parentNode?.children) {
+          parentNode.children = []
+        }
+        parentNode?.children?.push(component)
+        return state
+      }
+      state.renderComponents.push(component)
+      return state
+    })
   }
 }))
+
+const getParentNodeByParentId = (tree: Component[], parentId: number | string): Component | null => {
+  for (let i = 0; i < tree.length; i++) {
+    const node = tree[i]
+    if (node.id === parentId) {
+      return node
+    }
+    if (node?.children?.length) {
+      const result: null | Component = getParentNodeByParentId(node.children, parentId)
+      if (result) return result
+    }
+  }
+  return null
+}
 
 export default useComponentStore

@@ -1,5 +1,6 @@
-import { Component, RenderComponents } from '@/types/components'
-import { Button, Space } from 'antd'
+import { RenderComponents } from '@/types/components'
+import { Button } from 'antd'
+import Space from '@/components/ComponentItem/Space'
 import { createElement, ReactNode } from 'react'
 
 const COMPONENT_MAP: any = {
@@ -7,13 +8,12 @@ const COMPONENT_MAP: any = {
   Space: Space
 }
 
-export const startRenderComponents = (renderComponents: RenderComponents): ReactNode => {
-  if (!renderComponents.length) return null
-
+export const startRenderComponents = (renderComponents: RenderComponents | undefined): ReactNode => {
+  if (!renderComponents?.length) return null
   return renderComponents.map(component => {
     const { name, props, id } = component
     if (!COMPONENT_MAP[name]) return null
     const target = COMPONENT_MAP[name]
-    return createElement(target, {key: id, ...props}, props?.children ?? startRenderComponents(component.children) ?? [])
+    return createElement(target, {key: id, ...props, id}, props?.children ?? startRenderComponents(component?.children) ?? [])
   })
 }

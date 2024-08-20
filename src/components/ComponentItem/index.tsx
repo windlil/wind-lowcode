@@ -34,7 +34,7 @@ const ComponentItem: FC<ComponentItemProps> = ({ name, onDragEnd, desc }) => {
   return (
     <div
       ref={dragRef}
-      className='font-mono border-dashed border-[1px] border-[#b4b4b4] bg-white cursor-move py-2 px-8 rounded-lg'
+      className='font-mono border-dashed border-[1px] border-[#b4b4b4] bg-white cursor-move py-1 px-8 rounded-sm'
       style={{
         opacity: isDragging ? 0.4 : 1
       }}

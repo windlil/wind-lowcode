@@ -9,7 +9,6 @@ const Landing = () => {
 
   const handleClickStart = () => {
     setAuth(true)
-    console.log('??')
     navigate('/home')
   }
 

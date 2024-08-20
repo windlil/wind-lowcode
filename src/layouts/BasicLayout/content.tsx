@@ -14,7 +14,7 @@ const Content = () => {
       drop(_: any, monitor: any) {
         const didDrop = monitor.didDrop()
         if (didDrop) {
-          return;
+          return
         }
   
         return {

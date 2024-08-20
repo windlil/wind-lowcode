@@ -1,4 +1,3 @@
-import { Button, Space } from 'antd'
 
 export interface Component {
   /**
@@ -16,7 +15,7 @@ export interface Component {
   /**
    * 子组件
    */
-  children: Component[]
+  children?: Component[]
   /**
    * 父组件标识
    */
