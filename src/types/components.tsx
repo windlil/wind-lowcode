@@ -1,3 +1,5 @@
+import { Button, Space } from 'antd'
+
 export interface Component {
   /**
    * 组件标识
@@ -19,6 +21,11 @@ export interface Component {
    * 父组件标识
    */
   parentId?: number
+}
+
+export const enum ComponentType {
+  Button = 'Button',
+  Space = 'Space',
 }
 
 export type RenderComponents = Component[]

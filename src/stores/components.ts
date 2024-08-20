@@ -4,6 +4,7 @@ import { defineStore } from './utils'
 
 interface State {
   renderComponents: Component[]
+  addComponent: (component: Component) => void
 }
 
 const mockComponents: Component[] = [
@@ -47,6 +48,9 @@ const mockComponents: Component[] = [
 
 const useComponentStore = defineStore<State>(() => ({
   renderComponents: mockComponents,
+  addComponent(component) {
+    this.renderComponents.push(component)
+  }
 }))
 
 export default useComponentStore

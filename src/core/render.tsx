@@ -2,19 +2,6 @@ import { Component, RenderComponents } from '@/types/components'
 import { Button, Space } from 'antd'
 import { createElement, ReactNode } from 'react'
 
-export const createButton = (component: Component) => {
-  const { props, id } = component
-  const { children } = props
-
-  return <Button {...props} key={id}>{children ?? '按钮'}</Button>
-}
-
-export const createSpace = (component: Component) => {
-  const { props, id, children } = component
-
-  return <Space {...props} key={id} children={startRenderComponents(children)}/>
-}
-
 const COMPONENT_MAP: any = {
   Button: Button,
   Space: Space
