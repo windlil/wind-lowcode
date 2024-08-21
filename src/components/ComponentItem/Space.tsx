@@ -1,6 +1,5 @@
 import { ComponentType } from '@/types/components'
 import { Space as AntdSpace } from 'antd'
-import { FC } from 'react'
 import { useDrop } from 'react-dnd'
 
 const Space= (props: any) => {
@@ -15,7 +14,6 @@ const Space= (props: any) => {
       drop: (_: any,monitor: any) => {
         const didDrop = monitor.didDrop()
         if (didDrop) return
-        console.log(id)
         return {
           id
         }

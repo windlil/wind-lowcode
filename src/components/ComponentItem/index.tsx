@@ -8,6 +8,15 @@ interface ComponentItemProps {
   onDragEnd?: any
 }
 
+const setComponentDefaltProps = (name: string) => {
+  switch(name) {
+    case ComponentType.Button:
+      return {children: '按钮', type: 'primary'}
+    case ComponentType.Space:
+      return {size: 'middle'}
+  }
+}
+
 const ComponentItem: FC<ComponentItemProps> = ({ name, onDragEnd, desc }) => {
   const [{ isDragging }, dragRef] = useDrag(() => {
     return {
@@ -19,7 +28,7 @@ const ComponentItem: FC<ComponentItemProps> = ({ name, onDragEnd, desc }) => {
 
         onDragEnd && typeof onDragEnd === 'function' && onDragEnd({
           name,
-          props: name === ComponentType['Button'] ? {children: '按钮'} : {},
+          props: setComponentDefaltProps(name),
           ...dropResult
         })
       },

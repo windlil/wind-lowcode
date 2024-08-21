@@ -7,6 +7,7 @@ interface State {
   curComponent: Component | null
   addComponent: (component: Component, parentId?: number | string) => void
   setCurComponent: (currentId: number | string) => void
+  updateComponentProps: (componentId: number | string, newProps: any) => void
 }
 
 const mockComponents: Component[] = [
@@ -23,7 +24,7 @@ const mockComponents: Component[] = [
     id: 2,
     name: 'Space',
     props: {
-
+      size: 'middle'
     },
     children: [
       {
@@ -71,6 +72,19 @@ const useComponentStore = defineStore<State>((set) => ({
     set(state => {
       const curComponent = currentId !== 0 ? getNodeById(state.renderComponents, currentId) : null
       state.curComponent = curComponent
+      return state
+    })
+  },
+  
+  updateComponentProps(id: string | number, newProps: any) {
+    set(state => {
+      const component = getNodeById(state.renderComponents, id)
+      if (component && component.props) {
+        component.props = {
+          ...component.props,
+          ...newProps
+        }
+      }
       return state
     })
   }

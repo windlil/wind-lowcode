@@ -23,7 +23,6 @@ const Mask= forwardRef<{
 
   const updatePosition = useCallback(() => {
     const offsetContainerNode = document.querySelector(`${offsetContainerClassName}`)
-    console.log(offsetContainerNode)
     if (!offsetContainerNode) return
     const curComponentNode = document.querySelector(`[data-component-id="${curComponentId}"]`)
     if (!curComponentNode) return

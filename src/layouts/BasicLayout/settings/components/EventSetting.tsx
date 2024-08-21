@@ -1,7 +1,9 @@
+
+
 const EventSetting = () => {
+
   return (
     <div>
-      EventSetting
     </div>
   )
 }
