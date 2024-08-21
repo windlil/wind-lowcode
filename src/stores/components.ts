@@ -4,7 +4,9 @@ import { defineStore } from './utils'
 
 interface State {
   renderComponents: Component[]
+  curComponent: Component | null
   addComponent: (component: Component, parentId?: number | string) => void
+  setCurComponent: (currentId: number | string) => void
 }
 
 const mockComponents: Component[] = [
@@ -18,14 +20,14 @@ const mockComponents: Component[] = [
     children: [],
   },
   {
-    id: 3,
+    id: 2,
     name: 'Space',
     props: {
 
     },
     children: [
       {
-        id: 2,
+        id: 3,
         name: 'Button',
         props: {
           type: 'default',
@@ -48,10 +50,12 @@ const mockComponents: Component[] = [
 
 const useComponentStore = defineStore<State>((set) => ({
   renderComponents: mockComponents,
+  curComponent: null,
+
   addComponent(component, parentId?) {
     set(state => {
       if (parentId) {
-        const parentNode = getParentNodeByParentId(state.renderComponents, parentId)
+        const parentNode = getNodeById(state.renderComponents, parentId)
         if (parentNode && !parentNode?.children) {
           parentNode.children = []
         }
@@ -61,17 +65,25 @@ const useComponentStore = defineStore<State>((set) => ({
       state.renderComponents.push(component)
       return state
     })
+  },
+
+  setCurComponent(currentId: string | number) {
+    set(state => {
+      const curComponent = currentId !== 0 ? getNodeById(state.renderComponents, currentId) : null
+      state.curComponent = curComponent
+      return state
+    })
   }
 }))
 
-const getParentNodeByParentId = (tree: Component[], parentId: number | string): Component | null => {
+const getNodeById = (tree: Component[], id: number | string): Component | null => {
   for (let i = 0; i < tree.length; i++) {
     const node = tree[i]
-    if (node.id === parentId) {
+    if (node.id == id) {
       return node
     }
     if (node?.children?.length) {
-      const result: null | Component = getParentNodeByParentId(node.children, parentId)
+      const result: null | Component = getNodeById(node.children, id)
       if (result) return result
     }
   }

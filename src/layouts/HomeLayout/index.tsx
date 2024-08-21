@@ -15,7 +15,7 @@ import { useLocalStorage } from '@/utils/storage'
 import { WINDCODE_CURRENT_ITEM } from '@/common'
 import Auth from '@/components/Auth'
 
-type MenuItem = Required<MenuProps>['items'][number];
+type MenuItem = Required<MenuProps>['items'][number]
 
 const items: MenuItem[] = [
   { key: '/home/app-list', icon: <ApartmentOutlined />, label: '应用列表' },

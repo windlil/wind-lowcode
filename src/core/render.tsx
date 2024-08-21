@@ -14,6 +14,6 @@ export const startRenderComponents = (renderComponents: RenderComponents | undef
     const { name, props, id } = component
     if (!COMPONENT_MAP[name]) return null
     const target = COMPONENT_MAP[name]
-    return createElement(target, {key: id, ...props, id}, props?.children ?? startRenderComponents(component?.children) ?? [])
+    return createElement(target, {key: id, ...props, id, 'data-component-id': id}, props?.children ?? startRenderComponents(component?.children) ?? [])
   })
 }
