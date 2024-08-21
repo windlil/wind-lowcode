@@ -6,7 +6,7 @@ import Content from './content'
 import Header from './header'
 import Material from './components/Material'
 import PageTree from './components/PageTree'
-import Setting from './setting'
+import Setting from './settings/setting'
 import {
   AppstoreOutlined,
   ClusterOutlined,  
@@ -88,7 +88,7 @@ const BasicLayout = () => {
             <div className='flex-1 p-6 bg-[#f5f5f5]'>
               <Content/>
             </div>
-            <div className='w-[240px] border-l'>
+            <div className='w-[300px] border-l'>
               <Setting/>
             </div>
           </div>
