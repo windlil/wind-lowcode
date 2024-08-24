@@ -1,8 +1,10 @@
+import { Component } from '@/types/components'
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 interface Props {
   containerClassName: string
+  renderComponents: Component[]
   curComponentId: string | number
   offsetContainerClassName: string
 }
@@ -12,7 +14,8 @@ const Mask= forwardRef<{
 }, Props>(({
   containerClassName,
   curComponentId,
-  offsetContainerClassName
+  offsetContainerClassName,
+  renderComponents,
 }, ref) => {
   const [position, setPosition] = useState({
     top: 0,
@@ -29,7 +32,6 @@ const Mask= forwardRef<{
 
     const { top, left, width, height } = curComponentNode.getBoundingClientRect()
     const { top: offsetTop, left: offsetLeft } = offsetContainerNode.getBoundingClientRect()
-
     setPosition({
       top: top - offsetTop + offsetContainerNode.scrollTop,
       left: left - offsetLeft,
@@ -40,7 +42,7 @@ const Mask= forwardRef<{
 
   useEffect(() => {
     updatePosition()
-  }, [curComponentId, updatePosition])
+  }, [curComponentId, updatePosition, renderComponents])
 
   useImperativeHandle(ref, () => ({
     updatePosition,

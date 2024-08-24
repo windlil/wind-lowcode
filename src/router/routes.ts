@@ -47,6 +47,10 @@ export const routes: RouteObject[] = [
     element: createLazyElement(() => import('@/views/Editor/index'))
   },
   {
+    path: 'preview',
+    element: createLazyElement(() => import('@/views/Preview/index'))
+  },
+  {
     path: '/*',
     element: createLazyElement(() => import('@/views/404'))
   }

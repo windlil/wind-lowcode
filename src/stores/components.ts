@@ -75,7 +75,7 @@ const useComponentStore = defineStore<State>((set) => ({
       return state
     })
   },
-  
+
   updateComponentProps(id: string | number, newProps: any) {
     set(state => {
       const component = getNodeById(state.renderComponents, id)

@@ -2,16 +2,13 @@ import { startRenderComponents } from '@/core/render'
 import useComponentStore from '@/stores/components'
 import Mask from '@/components/Mask'
 import { ComponentType } from '@/types/components'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import { useDrop } from 'react-dnd'
 
 const Content = () => {
-  const [curComponentId, setCurComponentId] = useState<string | number>(0)
   const renderComponents = useComponentStore(state => state.renderComponents)
+  const curComponent = useComponentStore(state => state.curComponent)
   const setCurComponent = useComponentStore(state => state.setCurComponent)
-  const MaskRef = useRef<{
-    updatePosition: () => void
-  }>(null)
 
   const [{ canDrop }, dropRef] = (useDrop as any)(() => {
     return {
@@ -36,12 +33,6 @@ const Content = () => {
   })
 
   useEffect(() => {
-    if (MaskRef?.current) {
-      MaskRef.current.updatePosition()
-    }
-  }, [curComponentId])
-
-  useEffect(() => {
     const container = document.getElementById('renderComponentsContainer')
 
     const createMask = (e: MouseEvent) => {
@@ -52,12 +43,10 @@ const Content = () => {
           const attribute = el?.getAttribute ? el?.getAttribute('data-component-id') : null
           if (attribute) {
             setCurComponent(attribute)
-            setCurComponentId(attribute)
             return
           }
         }
       }
-      setCurComponentId(0)
       setCurComponent(0)
     }
 
@@ -78,10 +67,10 @@ const Content = () => {
       }}
     >
       {startRenderComponents(renderComponents)}
-      {curComponentId ? (
+      {curComponent ? (
         <Mask
-          ref={MaskRef}
-          curComponentId={curComponentId}
+          renderComponents={renderComponents}
+          curComponentId={curComponent?.id}
           containerClassName='#renderComponentsContainer'
           offsetContainerClassName='#renderComponentsContainer'
         />
