@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react'
+import { SettingPropsMap } from '@/common/SettingPropsMap'
 import useComponentStore from '@/stores/components'
 import { CopyOutlined } from '@ant-design/icons'
-import { SettingMap } from '@/common/index'
 import { Form, message } from 'antd'
 import copy from 'copy-to-clipboard'
 import { renderFormItem } from '@/core/renderFormItem'
@@ -48,7 +48,7 @@ const AttributeSetting:FC<any> = () => {
         </div>
       )}
       <Form form={form} onValuesChange={updateProps}>
-        {curComponent && SettingMap[curComponent.name].map((setting: any) => {
+        {curComponent && SettingPropsMap[curComponent.name].map((setting: any) => {
           return (
             <Form.Item label={setting.label} name={setting.name} key={setting.name}>
               {renderFormItem(setting?.type, setting?.options)}

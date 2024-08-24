@@ -63,7 +63,7 @@ const BasicLayout = () => {
     <Auth>
       <DndProvider backend={HTML5Backend}>
         <div className='w-[100vw] h-[100vh] flex flex-col overflow-hidden'>
-          <div className='w-full h-[6vh] border-b'>
+          <div className='w-full h-[50px] border-b'>
             <Header />
           </div>
           <div className='flex h-[95vh]'>
